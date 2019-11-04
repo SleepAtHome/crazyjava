@@ -1,0 +1,40 @@
+异常机制可以使程序的异常处理代码和正常业务代码分离，保证程序代码更加优雅，并提高程序的健壮性。
+
+异常机制：try、catch、finally、throw、throws
+
+Java将异常分为两种：Checked（编译阶段处理）、Runtime
+
+finally块中的代码总会被执行。
+
+为什么要用异常：
+1. 无法穷举所有的异常情况（总有可能漏掉的情况）
+2. 错误处理代码和业务实现代码混杂，不好维护
+
+当程序出现意外情形时，系统会自动生成一个Exception对象来通知程序。
+在try块中出现异常时，系统自动生成一个异常对象提交给Java运行时环境，然后会寻找能处理这个异常的catch块。如果找不到，则运行时环境终止，Java程序退出。
+
+每个catch块都是专门用于处理该异常类及其子类的异常实例。（可以有多个catch块）
+
+Java异常类继承关系：
+Throwable
+     |------Error（错误-虚拟机相关）
+     |        |------AWTError
+     |        |------IOError
+     |        |------LinkageError
+     |        |------ThreadDeath
+     |
+     |------Exception（异常）
+              |------SQLException
+              |------IOException
+              |------RuntimeException
+                       |------IndexOutOfBoundsException
+                       |------NullPointerException
+                       |------ClassCastException
+
+
+
+
+
+
+
+
