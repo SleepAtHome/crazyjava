@@ -15,6 +15,16 @@ finally块中的代码总会被执行。
 
 每个catch块都是专门用于处理该异常类及其子类的异常实例。（可以有多个catch块）
 
+先处理小异常，再处理大异常。
+
+捕获多种类型的异常时，异常的变量有隐式的final修饰。
+
+使用finally回收try块打开的资源（数据库连接、网络连接、磁盘文件等）。
+finally块总会执行，不管在try、catch中是否执行或是return。
+在处理异常时，try是必须的，catch和finally至少出现其中之一，finally必须放在最后。
+
+
+
 Java异常类继承关系：
 Throwable
      |------Error（错误-虚拟机相关）

@@ -7,9 +7,10 @@ public class DivTest {
         try {
             System.out.println("计算a/b，输入a：");
             Scanner sc1 = new Scanner(System.in);
+            String a = sc1.nextLine();
+
             System.out.println("计算a/b，输入b：");
             Scanner sc2 = new Scanner(System.in);
-            String a = sc1.nextLine();
             String b = sc2.nextLine();
             int c = Integer.parseInt(a)/Integer.parseInt(b);
             System.out.println("a/b = "+c);
