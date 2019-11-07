@@ -2,6 +2,13 @@ package exception;
 
 import java.util.Scanner;
 
+/**
+ * ClassName: MultiExceptionTest
+ * Description: 接收多种异常(java1.7+)
+ * date:
+ * @author jingyuankui
+ * @since JDK 1.8
+ */
 public class MultiExceptionTest {
     public static void main(String[] args) {
         try {

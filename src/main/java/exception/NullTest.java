@@ -2,6 +2,13 @@ package exception;
 
 import java.util.Date;
 
+/**
+ * ClassName: NullTest
+ * Description: 空指针异常
+ * date:
+ * @author jingyuankui
+ * @since JDK 1.8
+ */
 public class NullTest {
     public static void main(String[] args) {
         Date date = null;

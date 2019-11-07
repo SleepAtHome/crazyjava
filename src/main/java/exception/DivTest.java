@@ -2,6 +2,13 @@ package exception;
 
 import java.util.Scanner;
 
+/**
+ * ClassName: DivTest
+ * Description: 除法异常案例
+ * date:
+ * @author jingyuankui
+ * @since JDK 1.8
+ */
 public class DivTest {
     public static void main(String[] args) {
         try {

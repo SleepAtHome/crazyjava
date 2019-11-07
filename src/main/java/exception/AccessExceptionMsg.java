@@ -4,6 +4,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * ClassName: AccessExceptionMsg
+ * Description: 异常对象的使用
+ * date:
+ * @author jingyuankui
+ * @since JDK 1.8
+ */
 public class AccessExceptionMsg {
     public static void main(String[] args) {
         try {

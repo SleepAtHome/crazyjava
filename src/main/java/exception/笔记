@@ -23,7 +23,9 @@ finally块中的代码总会被执行。
 finally块总会执行，不管在try、catch中是否执行或是return。
 在处理异常时，try是必须的，catch和finally至少出现其中之一，finally必须放在最后。
 
+通常，不要在finally块中使用return或者throw导致方法终止的语句，因为会导致原本的try、catch块中的return、throw语句失效。
 
+使用自动关闭资源try语句时，包含了隐式的Finally块，只有实现了AutoCloseable或Closeable接口才能使用使用自动关闭资源try语句。
 
 Java异常类继承关系：
 Throwable
