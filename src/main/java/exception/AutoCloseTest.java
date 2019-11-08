@@ -15,6 +15,7 @@ public class AutoCloseTest {
         try(
                 // 声明、初始化两个可关闭资源（try语句会自动关闭这两个资源）
                 // 这两个类都实现了Closeable接口，所以可以自动关闭
+                // cc.txt这个资源是要有的
                 BufferedReader br = new BufferedReader(new FileReader("cc.txt"));
                 PrintStream ps = new PrintStream(new FileOutputStream("a.txt"))
         ) {

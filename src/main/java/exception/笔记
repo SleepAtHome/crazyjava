@@ -27,6 +27,12 @@ finally块总会执行，不管在try、catch中是否执行或是return。
 
 使用自动关闭资源try语句时，包含了隐式的Finally块，只有实现了AutoCloseable或Closeable接口才能使用使用自动关闭资源try语句。
 
+Java异常分两大类：Checked异常和RunTime异常，所有RunTimeException类及其子类的实例被称为RunTime异常，其他的则是Checked异常。
+Checked异常必须要显式try、catch或者throw
+RunTime异常无需显式throw。
+
+一般优先考虑使用RunTime异常，可以使程序更加简洁。
+
 Java异常类继承关系：
 Throwable
      |------Error（错误-虚拟机相关）
