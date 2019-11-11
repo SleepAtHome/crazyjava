@@ -1,0 +1,34 @@
+16.4 控制线程
+
+join线程：
+join()方法：当在某个程序执行流中调用其他线程的join()方法时，调用线程将被阻塞，知道被join()方法加入的join线程执行完为止。
+join()方法通常由使用线程的程序调用。
+
+join()：普通join
+join(long millis)：等待被join线程的时间最长为millis毫秒
+join(long millis, int nanos)：等待被join线程的时间最长为millis毫秒+nanos毫微秒
+
+
+守护线程（后台线程）：
+e.g. JVM的垃圾回收线程
+特征：如果所有的前台线程都死亡，那么后台线程会自动死亡。
+调用Thread对象的setDaemon(true)方法可以将自定线程设置为后台线程。
+Thread类的isDaemon()方法：判断指定线程是否为后台线程。
+
+
+线程睡眠：sleep
+Thread类的静态sleep(long millis)方法：让当前正在执行的线程暂停一段时间，并进入阻塞状态。
+
+线程让步：yield
+Thread类的静态yield()方法：让当前正在执行的线程暂停，但不会阻塞该线程，只转入就绪状态（暂停一下）。
+只有优先级>=调用了yield()方法的线程，才会获得执行的机会。
+
+sleep和yield的区别：
+1. sleep会给其他线程机会，而yield只会给优先级相同或更高的线程。
+2. sleep会进入阻塞状态。
+3. sleep声明抛出了InterruptException异常，yield没有
+4. sleep有更好的移植性。
+
+
+改变线程的优先级：setPriority(1~10之间的数字，10最高)
+还有getPriority()
