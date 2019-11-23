@@ -1,8 +1,28 @@
 16.6 线程通信
 可以通过一些机制来保证线程的协调运行。
 
+
+16.6.1 传统的线程通信
 Object其中有3个方法：wait()、notify()、notifyAll()
+这3个方法必须由同步监视器对象来调用，两种情况：
+- 如使用synchronized修饰的同步方法，同步监视器为this，在同步方法中可直接调用这3个方法。
+- 如使用synchronized修饰的同步代码块，必须使用同步代码块中的同步监视器对象来调用这3个方法。
 
 wait()：导致当前线程等待，直到其他线程调用该同步监视器的notify()方法或notifyAll()方法来唤醒该线程。调用wait()方法的当前线程会释放对该同步监视器的锁定。
 notify()：随机唤醒在此同步监视器上等待的单个线程。
 notifyAll()：唤醒在此同步监视器上等待的所有线程。
+
+
+16.6.2 使用Condition控制线程通信
+如不使用synchronized关键字同步，而直接使用Lock对象保持同步，则系统中不存在隐式的同步监视器，也就不能使用wait()、notify()、notifyAll()方法进行线程通信了。
+当使用Lock对象来保证同步时，Java提供了Condition类来保持协调，使用Condition可以让那些已经得到Lock对象却无法继续执行的线程释放Lock对象，Condition对象也可以唤醒其他处于等待的线程。
+
+Condition将同步监视器方法【wait()、notify()、notifyAll()】分解成不同的对象，以便与Lock对象组合使用，为每个对象提供了多个等待集(wait-set)。
+这样，Lock替代了synchronized，Condition替代了同步监视器的功能。
+
+Condition实例被绑定在一个Lock对象上。要获得特定Lock实例的Condition实例，调用Lock对象的newCondition()方法即可。
+Condition类提供的方法：
+- await()：类似于隐式同步监视器上的wait()方法，导致当前线程等待。
+- signal()：随机唤醒在此Lock对象上等待的单个线程。
+- signalAll()：唤醒在此Lock对象上等待的所有线程。
+
