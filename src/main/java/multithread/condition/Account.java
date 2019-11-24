@@ -29,7 +29,6 @@ public class Account {
     private boolean flag = false;
 
     public Account() { }
-
     public Account(String accountNo, double balance) {
         this.accountNo = accountNo;
         this.balance = balance;
@@ -38,37 +37,33 @@ public class Account {
     public Lock getLock() {
         return lock;
     }
-
     public Condition getCondition() {
         return condition;
     }
-
     public String getAccountNo() {
         return accountNo;
     }
-
     public void setAccountNo(String accountNo) {
         this.accountNo = accountNo;
     }
-
     public double getBalance() {
         return this.balance;
     }
-
-
-
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
 
+    /**
+     * 存钱
+     * @param drawAmount
+     */
     public void draw(double drawAmount) {
         // 上锁
         lock.lock();
         try {
             // 如果账户没钱，等待，等待存钱
-            if (!flag) {
-                condition.await();
-            } else {
+            if (!flag) { condition.await(); }
+            else {
                 // 如果账户有钱，则进行取钱
                 System.out.println(Thread.currentThread().getName()+"取钱："+drawAmount);
                 balance -= drawAmount;
@@ -81,6 +76,29 @@ public class Account {
             e.printStackTrace();
         } finally {
             // 使用finally块来释放锁
+            lock.unlock();
+        }
+    }
+
+    /**
+     * 取钱
+     * @param depositAmount
+     */
+    public void deposit(double depositAmount) {
+        lock.lock();
+        try {
+            // 如果账户有钱，等待，等待取钱
+            if (flag) { condition.await(); }
+            else {
+                System.out.println(Thread.currentThread().getName()+"存款："+depositAmount);
+                balance += depositAmount;
+                System.out.println("余额为："+balance);
+                flag = true;
+                condition.signalAll();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
             lock.unlock();
         }
     }
