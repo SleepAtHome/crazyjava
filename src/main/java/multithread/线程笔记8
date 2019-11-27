@@ -1,0 +1,13 @@
+线程组和未处理的异常
+
+Java使用ThreadGroup来表示线程组，它可以对一批线程进行分类管理，允许直接对线程组进行控制。（相当于同时控制这批线程）
+
+在默认情况下，子线程和创建它的父线程处于同一个线程组内。
+一旦某个线程加入了指定线程组之后，该线程将一直属于该线程组，直到该线程死亡，线程运行途中不能改变它所属的线程组。
+
+设置线程组：
+Thread(ThreadGroup group, Runnable target)：以target的run()方法作为线程执行体创建新线程，属于group线程组。
+Thread(ThreadGroup group, Runnable target, String name)：同上，并指定线程名。
+Thread(ThreadGroup group, String name)：创建新线程，新线程名为name，属于group线程组。
+
+getThreadGroup()：返回该线程所属的线程组。
