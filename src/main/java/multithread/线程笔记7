@@ -1,0 +1,26 @@
+阻塞队列BlockingQueue jdk 1.5+
+
+BlockingQueue是Queue的子接口，但不是容器，而是线程同步的工具。
+特征：当生产者线程试图向BlockingQueue放入元素时，如果该队列已空，则该线程被阻塞。
+
+BlockingQueue：
+put(E e)：尝试把E元素放入BlockingQueue中，如果该队列元素已满，则阻塞该线程。
+take()：尝试从BlockingQueue的头部取出元素，如果该队列的元素已空，则阻塞该线程。
+...一些Queue的方法
+
+
+BlockingQueue的5个实现类：
+ArrayBlockingQueue：基于数组实现的BlockingQueue队列
+LinkedBlockingQueue：基于链表实现的BlockingQueue队列
+PriorityBlockingQueue：不是标准的阻塞队列。取出的时候不是取出存在时间最长的元素，而是取出最小的元素（可以使用Compareable或Comparator）
+SynchronousQueue：同步队列。对该队列的存、取操作必须交替进行。
+DelayQueue：基于PriorityBlockingQueue实现，不过要求集合元素都实现Delay接口。
+
+
+
+
+
+
+
+
+
