@@ -1,0 +1,48 @@
+线程池
+系统启动一个新线程的成本是比较高的，使用线程池可以很好地提高性能，尤其是当程序中需要创建大量生存期很短暂的线程时。
+
+与数据库连接池类似，线程池在系统启动时即创建大量空闲的线程，
+程序将一个Runnable对象或Callable对象传给线程池，线程池就会启动一个线程来执行它们的run()或者call()方法。
+执行结束后，线程返回线程池中进入空闲状态。
+
+线程池可以有效地控制系统中并发线程的数量。
+
+
+Java5 线程池
+Executors工厂类用来产生线程池。提供了以下静态工厂方法来创建线程池：
+
+static ExecutorService	newCachedThreadPool()：创建一个具有缓存功能的线程池，系统根据需要创建线程，这些线程将会被缓存在线程池中。
+static ExecutorService	newFixedThreadPool(int nThreads)：创建一个可重用的、具有固定线程数的线程池。
+static ExecutorService	newSingleThreadExecutor()：创建一个只有单线程的线程池，它相当于调用newFixedThreadPool(1)。
+static ScheduledExecutorService	newScheduledThreadPool(int corePoolSize)：创建具有指定线程数的线程池，它可以在指定延迟后执行线程任务。corePoolSize：池中所保存的线程数，即使空闲的也被保存在线程池内。
+static ScheduledExecutorService	newSingleThreadScheduledExecutor()：创建只有一个线程的线程池，它可以在指定延迟后执行线程任务。
+
+ScheduledExecutorService 是 ExecutorService的子类，在指定延迟后执行线程任务。
+
+
+ExecutorService：尽快执行线程的线程池。
+Future<?>	submit(Runnable task)：将一个Runnable对象提交给指定的线程池，线程池将在有空闲线程时执行Runnable对象代表的任务。 Future对象代表Runnable任务的返回值——但run()方法没有返回值。
+                                   所以Future对象在run()方法执行结束后返回null。但可以调用Future的idDone()、isCancelled()方法来获得Runnable对象的执行状态。
+<T> Future<T>	submit(Runnable task, T result)：result显示指定线程执行结束后的返回值，所以Future对象将在run()方法执行结束后返回result。
+<T> Future<T>	submit(Callable<T> task)：将一个Callable对象提交给指定的线程池，线程池将在有空闲线程时执行Callable对象代表的任务。Future对象是call()方法的返回值。
+
+
+ScheduledExecutorService：在指定延迟后、或周期性地执行线程任务。
+<V> ScheduledFuture<V>	schedule(Callable<V> callable, long delay, TimeUnit unit)：指定的callable将在delay延迟后执行。
+ScheduledFuture<?>	schedule(Runnable command, long delay, TimeUnit unit)：指定的command将在delay延迟后执行。
+ScheduledFuture<?>	scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit)：指定的command将在delay延迟后执行，并以设定重复频率执行。
+                                                                                                          (initialDelay、initialDelay+period、initialDelay+2*period、...)
+ScheduledFuture<?>	scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit)：指定的command将在delay延迟后执行，任务结束与下一任务开始时间间隔为固定的。
+
+
+当用完一个线程池后，应该调用线程池的shutdown()、shutdownNow()方法。
+
+使用线程池来执行线程任务的步骤：
+1. 调用Executors工厂类的静态方法创建一个ExecutorService对象，该对象代表一个线程池，
+2. 创建Runnable实现类或Callable实现类的实例，作为线程执行任务。
+3. 调用ExecutorService对象的submit()方法来提交Runnable或Callable的实例。
+4. 当不想提交任何任务时，调用ExecutorService对象的shutdown()方法来关闭线程池。
+
+
+
+
