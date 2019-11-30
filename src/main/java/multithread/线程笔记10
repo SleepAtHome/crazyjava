@@ -1,0 +1,19 @@
+线程池
+ForkJoinPool (jdk 1.7+)：支持将一个任务拆分成多个"小任务"并行计算，再把多个"小任务"的结果合并成总的计算结果。（更好地支持电脑的多核CPU）
+ForkJoinPool是ExecutorService的实现类，是一种特殊的线程池。
+
+构造器：
+ForkJoinPool(int parallelism)：创建一个包含parallelism个并行线程的ForkJoinPool。
+ForkJoinPool()：以Runtime对象.availableProcessors()方法的返回值作为parallelism参数来创建ForkJoinPool。
+
+方法：执行指定任务
+<T> ForkJoinTask<T>	submit(ForkJoinTask<T> task)：
+<T> T invoke(ForkJoinTask<T> task)：
+boolean	awaitTermination(long timeout, TimeUnit unit)：线程池的有效执行时间（此方法会阻塞，通常与shutdown()方法一起用）：当线程池执行timeout及以上，往下走。
+
+ForkJoinTask代表一个可并行、合并的任务。
+ForkJoinTask是一个抽象类，实现了Future类，有两个子类：RecursiveAction（没有返回值的任务）, RecursiveTask（有返回值的任务）
+ForkJoinPool继承了-->AbstractExecutorService，AbstractExecutorService继承了-->ExecutorService，ExecutorService继承了-->Executor类
+
+
+
