@@ -1,0 +1,21 @@
+注解Annotation
+
+Java5增加了对元数据（Metadata）的支持——Annotation
+Annotation是代码里的特殊标记，可以在编译、类加载、运行时被读取，并执行相应的处理。
+通过使用Annotation，开发人员可以在不改变原有逻辑的情况下，在源文件中嵌入一些补充的信息。
+
+代码分析工具、开发工具、部署工具可以通过这些补充信息进行验证或者进行部署。
+
+Annotation提供了一种为程序元素（类、方法、成员变量等）设置元数据的方法，这些信息被存储在Annotation的"name=value"对中。
+
+Annotation是一个接口，程序可以通过反射来获取指定程序元素的Annotation对象，然后通过Annotation对象来取得注释里的元数据。
+
+Annotation不影响程序代码的执行，无论增加、删除Annotation，代码都始终如一地执行。
+如果希望让程序中Annotation在运行时起到一定作用，只有通过某种配套工具对Annotation中的信息进行访问和处理——APT（Annotation Processing Tool）。
+
+
+
+
+
+
+

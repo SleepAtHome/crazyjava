@@ -1,0 +1,16 @@
+14.1 基本Annotation
+Annotation必须使用工具处理，工具负责提取Annotation里包含的元数据，工具还会根据这些元数据增加额外功能。
+
+4个基本的Annotation（java.lang）：
+- @Override
+- @Deprecated
+- @SuppressWarnings
+- @SafeVarargs （jdk 1.7+）
+
+
+14.1.1 @Override 限定重写父类方法
+@Override可以强制一个子类必须覆盖父类的方法。
+@Override可以告诉编译器检查这个方法，保证父类要包含一个被该方法重写的方法，否则会编译出错。
+@Override主要是帮助我们避免一些低级错误，例如写错要重写的方法名等。
+@Override只能作用于方法，不能作用于其他程序元素。
+
