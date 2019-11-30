@@ -1,4 +1,4 @@
-线程组和未处理的异常
+线程组 和 未处理的异常
 
 Java使用ThreadGroup来表示线程组，它可以对一批线程进行分类管理，允许直接对线程组进行控制。（相当于同时控制这批线程）
 
@@ -23,6 +23,26 @@ void interrupt()：中断此线程组中所有的线程。
 boolean	isDaemon()：判断该线程组是否是后台线程组。
 void setDaemon(boolean daemon)：把该线程组设置成后台线程组。
 void setMaxPriority(int pri)：设置线程组的最高优先级。
+void uncaughtException(Thread t, Throwable e)：可以处理线程组内任意线程所抛出的未处理的异常
 
 后台线程组：当后台线程组的最后一个线程执行结束或最后一个线程被销毁后，后台线程组将自动销毁。
+
+如果线程执行过程中抛出了一个未处理的异常，JVM在结束之前或自动查找是否有对应的Thread.UncaughtExceptionHandler对象，如果找到该处理器的对象
+则会调用该对象的void uncaughtException(Thread t, Throwable e)方法处理该异常。
+
+Thread.UncaughtExceptionHandler是Thread类的一个静态内部接口，这个接口只有一个方法：void uncaughtException(Thread t, Throwable e)
+这个方法中t代表出现异常的线程，e代表该线程抛出的异常。
+
+Thread类提供了两个方法来设置异常处理器：
+static void	setDefaultUncaughtExceptionHandler(Thread.UncaughtExceptionHandler eh)：为该线程类的所有实例设置默认的异常处理器。
+void setUncaughtExceptionHandler(Thread.UncaughtExceptionHandler eh)：为指定的线程设置默认的异常处理器。
+
+ThreadGroup类实现了Thread.UncaughtExceptionHandler接口，所以每个线程所属的线程组将会作为默认的异常处理器。
+
+线程组处理异常的默认流程：
+1. 如果该线程有父线程组，则调用父线程组的uncaughtException(Thread t, Throwable e)方法来处理该异常。
+2. 如果该线程实例所属的线程类有默认的异常处理器（setDefaultUncaughtExceptionHandler()）那么就用这个。
+3. 如果该异常对象是ThreadDeath的对象，则不作任何处理；否则将异常信息System.err，并结束该线程。
+
+
 
