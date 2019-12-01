@@ -22,3 +22,19 @@ Annotation必须使用工具处理，工具负责提取Annotation里包含的元
 @SuppressWarnings会一直作用于该程序元素的所有子元素。
 e.g. 使用@SuppressWarnings修饰某个类取消显示某个编译器警告，同时又修饰该类里的某个方法取消显示另一个编译器警告，那么该方法将会同时取消显示这两个编译器警告。
 通常，如果程序中没有使用泛型，会引起编译器警告，为了取消这种警告，可以使用@SuppressWarnings修饰。
+
+14.1.4 @SafeVarargs 抑制"堆污染"警告
+堆污染：把一个不带泛型的对象赋值给一个带范型的变量（把一个不带泛型的list1赋给一个带范型的list2，但list1中的元素类与list2的泛型不一致）
+
+Java7会在编译该方法的时候（使用-Xlint:unchecked显示详细信息）就发出"堆污染"警告，便于开发者发现问题。
+---
+javac ErrorUtils.java -Xlint:unchecked -encoding utf-8
+ErrorUtils.java:16: 警告: [unchecked] 参数化 vararg 类型List<String>的堆可能已受污染
+    public static void faultyMethod(List<String>... lists) {
+---
+
+抑制方法：
+- 使用@SafeVarargs修饰引发该警告的方法或构造器。
+- 使用@SuppressWarnings("unchecked")修饰。
+- 编译时使用-Xlint:varargs选项
+
