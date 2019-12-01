@@ -11,8 +11,15 @@ import java.util.List;
  * @author jingyuankui
  * @since JDK 1.8
  */
+@java.lang.SuppressWarnings(value = "unchecked")
 public class SuppressWarnings {
     public static void main(String[] args) {
-        List list = new ArrayList();
+        /*
+         这里没有使用泛型，所以本来应当产生警告:
+         Information:java: D:\...\SuppressWarnings.java使用了未经检查或不安全的操作。
+
+         但是这里使用@SuppressWarnings以后就没有告警了
+         */
+        List<String> list = new ArrayList();
     }
 }
