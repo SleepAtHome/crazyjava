@@ -1,0 +1,27 @@
+java.lang.annotation包下定义了4个Meta Annotation，这4个Meta Annotation都用于修饰其他Annotation
+
+14.2.1 @Retention 指定Annotation的保留时间
+@Retention只能用于修饰一个Annotation，用于指定被修饰的Annotation可以保留多长时间。
+@Retention包含一个RetentionPolicy类型的value变量，值只能是以下3个：
+- RetentionPolicy.CLASS：编译器将把Annotation记录在class文件中。当运行Java程序时，JVM不再保留Annotation。（默认值）
+- RetentionPolicy.RUNTIME：编译器将把Annotation记录在class文件中。当运行Java程序时，JVM也保留Annotation，程序可以通过反射获取该Annotation信息。
+- RetentionPolicy.SOURCE：Annotation只保留在源代码中，编译器直接丢弃这种Annotation。
+
+如果一个Annotation里只有一个成员变量，使用此Annotation时，可以不写"value="，可以直接写值。
+
+
+14.2.2 @Target 指定Annotation能用于修饰哪些程序单元。
+@Target包含一个value变量，值只能是以下几个：
+- ElementType.ANNOTATION_TYPE：指定该策略的Annotation只能修饰Annotation。
+- ElementType.CONSTRUCTOR：指定该策略的Annotation只能修饰构造器。
+- ElementType.FIELD：指定该策略的Annotation只能修饰成员变量。
+- ElementType.LOCAL_VARIABLE：指定该策略的Annotation只能修饰局部变量。
+- ElementType.METHOD：指定该策略的Annotation只能修饰方法定义。
+- ElementType.PACKAGE：指定该策略的Annotation只能修饰包定义。
+- ElementType.PARAMETER：指定该策略的Annotation可以修饰参数。
+- ElementType.TYPE：指定该策略的Annotation可以修饰类、接口（包括注释类型）、枚举定义。
+- ElementType.TYPE_PARAMETER
+- ElementType.TYPE_USE
+
+14.2.3 @Documented 被此Annotation修饰的Annotation将被javadoc工具提取成文档（会在JavaDoc中显示用到的使用@Documented注释的Annotation）
+
