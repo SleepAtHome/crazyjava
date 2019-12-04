@@ -25,3 +25,5 @@ java.lang.annotation包下定义了4个Meta Annotation，这4个Meta Annotation�
 
 14.2.3 @Documented 被此Annotation修饰的Annotation将被javadoc工具提取成文档（会在JavaDoc中显示用到的使用@Documented注释的Annotation）
 
+14.2.4 @Inherited 被此Annotation修饰的Annotation将具有继承性。
+    如果@A Annotation被@Inherited修饰：那么某个使用@A的类，其子类也被@A修饰。
