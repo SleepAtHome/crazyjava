@@ -1,0 +1,27 @@
+自定义Annotation
+
+14.3.1 定义Annotation
+定义新的Annotation类型使用@interface关键字。（与定义一个接口非常像）
+Annotation可以带成员变量：在Annotation中以无形参的方法形式来声明，其方法名和返回值定义了该成员变量的名字和类型。
+
+根据Annotation是否可以包含成员变量，可以分为两类：
+- 标记Annotation：没有定义成员变量的Annotation。（@Override、@Test等）
+- 元数据Annotation：包含成员变量的Annotation。
+
+
+14.3.2 提取Annotation信息
+当开发者使用Annotation修饰了类、方法、Field等成员之后，这些Annotation不会自己生效，必须由开发者提供相应的工具来提取并处理Annotation信息。
+Java使用Annotation接口来代表程序元素前面的注释，该接口是所有Annotation类型的父接口。
+
+jdk 1.5+ 在java.lang.reflect包下增加了AnnotatedElement接口，代表程序中可以接受注释的程序元素，主要有以下几个实现类：
+- Class：类定义
+- Constructor：构造器定义
+- Field：类的成员变量定义
+- Method：类的方法定义
+- Package：类的包定义
+- Parameter：参数的定义
+
+AnnotatedElement接口是所有程序元素（Class、Method、Constructor等）的父接口，所以程序通过反射获取了某个类的AnnotatedElement对象之后，就可以调用该对象的如下3个方法来访问Annotation信息。
+- <T extends Annotation> T	getAnnotation(Class<T> annotationClass)：返回该程序元素上存在的指定类型的Annotation，如果该类型的Annotation不存在，则返回null。
+- Annotation[]	getAnnotations()：返回该程序元素上存在的所有Annotation。
+- default boolean	isAnnotationPresent(Class<? extends Annotation> annotationClass)：判断该程序元素上存在的指定类型的Annotation
