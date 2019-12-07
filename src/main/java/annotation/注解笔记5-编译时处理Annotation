@@ -1,0 +1,8 @@
+APT（Annotation Processing Tool） 是一种处理Annotation的工具，它对源代码文件进行检测找出其中的Annotation后，对Annotation进行额外的处理。
+目的在于简化开发者的工作量。
+APT可以在编译程序源代码的同时生成一些附属文件（源文件、类文件、程序发布描述等）
+
+每个Annotation处理器都需要实现javax.annotation.processing包下的Processor接口。
+一般会采用继承AbstractProcessor的方式来实现Annotation处理器。
+一个Annotation处理器可以处理一种或者多种Annotation类型。
+
