@@ -1,0 +1,2 @@
+rem 使用HibernateXMLAnnotationProcessor作为APT处理Person.java中的Annotation
+javac -processor HibernateXmlAnnotationProcessor Person.java -encoding utf-8
