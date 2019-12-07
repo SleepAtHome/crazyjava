@@ -23,7 +23,7 @@ public class ActionListenerInstaller {
             // 得到obj对象的类
             Class cl = obj.getClass();
             // 获取obj对象的所有Field并遍历
-            for (Field f: cl.getFields()) {
+            for (Field f: cl.getDeclaredFields()) {
                 // 将指定Field设置成可自由访问
                 f.setAccessible(true);
                 // 获取指定的 Field 上 ActionListenerFor 类型的 Annotation
