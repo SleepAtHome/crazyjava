@@ -1,0 +1,23 @@
+类加载器：
+负责将.class文件加载到内存中，并为之生成java.lang.Class对象。
+
+18.2.2 类加载器 简介
+一旦一个类被载入JVM中，同一个类就不会再次载入了。
+
+一个类用其全限定名（包名+类名）作为标识。
+但在JVM中，一个类用 其全限定类名+其类加载器 作为唯一标识。
+
+e.g. 在pg的包中含有一个Person类，被类加载器ClassLoader的实例kl1负责加载，则该Person类对应的Class对象在JVM中表示为（Person、pg、kl1）
+     意味着两个类加载器的同名类：（Person、pg、kl1）和（Person、pg、kl2）是不同的、它们所加载的类也是完全不同、互不兼容的。
+
+当JVM启动时，会形成由3个类加载器组成的初始类加载器层次结构：
+- Bootstrap ClassLoader：根类加载器——加载Java的核心类（Java核心类库都在jdk1.x.x_xxx/jre/lib/rt.jar文件中）
+- Extension ClassLoader：扩展类加载器——加载JRE的扩展目录（jdk1.x.x_xxx/jre/lib/ext或者由java.ext.dirs系统指定的目录）中JAR包的类。
+- System ClassLoader：系统（应用）类加载器——在JVM启动时加载来自java命令的-classpath选项、java.class.path系统属性，或CLASSPATH环境变量所制定的JAR包和类路径。
+    程序可以通过ClassLoader的静态方法getSystemClassLoader()来获取系统类加载器。
+    如果没有特别指定，则用户自定义的类加载器都以类加载器作为父加载器。
+
+根类加载器很特殊，不是java.lang.ClassLoader的子类，而是由JVM自身实现的。
+
+
+
