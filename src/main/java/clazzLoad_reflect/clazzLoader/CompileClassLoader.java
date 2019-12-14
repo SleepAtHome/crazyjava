@@ -11,6 +11,8 @@ import java.lang.reflect.Method;
  * Description: 自定义ClassLoader（重写findCLass()方法实现）
  * 这个ClassLoader可以在加载类之前先编译该类的源文件
  * 这样就可以通过该ClassLoader直接运行Java源文件
+ *
+ * 使用命令时去掉包名进行编译运行 ，不然会ClassNotFound
  * date: 2019/12/14 11:45
  *
  * @author jingyuankui
@@ -110,8 +112,9 @@ public class CompileClassLoader extends ClassLoader{
     private boolean compile(String javaFile) throws IOException {
         System.out.println("JYK的CompileClassLoader正在编译"+javaFile+"...");
 
-        // 调用系统的javac命令
-        Process p = Runtime.getRuntime().exec("javac "+javaFile);
+        // 调用系统的javac命令，我这里因为用了utf-8 所以要加上后面这个参数
+        Process p = Runtime.getRuntime().exec("javac "+javaFile+" -encoding utf-8");
+        System.out.println(javaFile);
 
         try {
             // 其他线程都等着这个线程完成
