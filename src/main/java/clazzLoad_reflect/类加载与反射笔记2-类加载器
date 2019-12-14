@@ -43,3 +43,34 @@ JVM中4种类加载器的层次结构：根类加载器<--扩展类加载器<--�
 其中 5、6步允许重写CLassLoader的findCLass()方法来实现自己的载入策略，也可以重写loadClass()方法来实现自己的载入过程。
 
 
+18.2.3 创建并使用自定义的类加载器
+可以通过扩展CLassLoader的子类，并重写其中的方法自定义类加载器。推荐重写findClass(避免覆盖默认类加载器的父类委托、缓冲机制两种策略)。
+ClassLoader的方法：
+- protected Class<?>	loadClass(String name, boolean resolve)：ClassLoader的入口点，根据指定的二进制名称来加载该类，系统就是调用这个方法来获取指定类对应的Class对象。
+- protected Class<?>	findClass(String name)：根据二进制名称查找类。
+- protected Class<?>	defineClass(String name, byte[] b, int off, int len)：将指定类的字节码文件（.Class文件）读入字节数组byte[] b内，并转换为Class对象。（final型，无法重写）
+- protected Class<?>	findSystemClass(String name)：从本地系统装入文件。
+- static ClassLoader	getSystemClassLoader()：返回系统类加载器
+- ClassLoader	getParent()：获得该类加载器的父类加载器
+- protected void	resolveClass(Class<?> c)：链接指定的类。
+- protected Class<?>	findLoadedClass(String name)：如果虚拟机已加载了名为name的类，则直接返回该类的Class实例；如果没有，返回null。（Java加载类缓存机制的体现）
+
+loadClass()方法执行步骤：
+1. 用protected Class<?>	findLoadedClass(String name)来检查是否已经加载类，如果已经加载则直接返回。
+2. 在父类加载器上调用loadClass()方法。如果父类加载器为null，则使用根类加载器来加载。
+3. 调用findClass()方法的查找类。
+
+自定义类加载器还可以实现：
+- 执行代码前自动验证数字签名。
+- 根据用户提供的密码解密代码，从而可以实现代码混淆器来避免反编译Class文件
+- 根据用户需求动态地加载类。
+- 根据应用需求把其他数据以字节码的形式加载到应用中。
+
+
+
+
+
+
+
+
+
