@@ -67,6 +67,15 @@ loadClass()方法执行步骤：
 - 根据应用需求把其他数据以字节码的形式加载到应用中。
 
 
+18.2.4 URLClassLoader类
+URLClassLoader类是ClassLoader类的实现类，也是系统类加载器和扩展类加载器的父类。
+URLClassLoader类可以从本地获取二进制文件加载类，也可以从远程主机获取二进制文件来加载类。
+
+构造器：
+URLClassLoader(URL[] urls)：使用默认的父类加载器创建一个ClassLoader对象，该对象将从urls所指定的系列路径来查询并加载类。
+URLClassLoader(URL[] urls, ClassLoader parent)：使用指定的父类加载器创建一个ClassLoader对象。
+
+得到URLClassLoader对象后，就可以用loadClass()方法加载指定类。
 
 
 
