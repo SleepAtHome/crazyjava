@@ -1,0 +1,75 @@
+18.3 通过反射查看类信息
+Java程序中许多对象在运行时都会出现两种类型：
+e.g. Person p = new Student(); 编译时p为Person，运行时p为Student。
+
+程序需要在运行时发现对象和类的真实信息，有两种做法：
+1. 编译时和运行时都完全知道类型的具体信息：可以直接使用instanceof，再进行强转。
+2. 编译时无法预知该对象和类可能属于哪些类，只能依靠运行时的信息来发现该对象和类的真实信息：反射。
+
+18.3.1 获得Class对象：
+3种方式（第2种好）：
+1. 使用Class类的static Class<?>	forName(String className)：传入全限定类名。（可能抛出ClassNotFoundException）
+2. 调用某个类的class属性获取该类对应的Class对象。
+3. 调用某个对象的getClass()方法。所有的Java对象都可以调用。
+
+第二种好的原因：
+- 代码更安全：程序在编译阶段就可以检查需要访问的Class对象是否存在。
+- 程序性能更好：无需调用方法。
+
+
+18.3.2 从Class中获取信息
+
+Class类的主要方法：
+获取构造器：
+- Constructor<T>	getConstructor(Class<?>... parameterTypes)：返回此Class对象对应类的指定public构造器。
+- Constructor<?>[]	getConstructors()：返回此Class对象对应类的所有public构造器。
+- Constructor<T>	getDeclaredConstructor(Class<?>... parameterTypes)：返回此Class对象对应类的指定构造器（与构造器访问权限无关）。
+- Constructor<?>[]	getDeclaredConstructors()：返回此Class对象对应类的所有构造器（与构造器访问权限无关）。
+
+获取方法：
+- Method	getMethod(String name, Class<?>... parameterTypes)：返回此Class对象对应类的指定public方法。
+- Method[]	getMethods()：返回此Class对象对应类的所有的public方法。
+- Method	getDeclaredMethod(String name, Class<?>... parameterTypes)：
+- Method[]	getDeclaredMethods()：
+
+获取Field：
+- Field	getField(String name)：返回此Class对象对应类的指定public Field。
+- Field[]	getFields()：返回此Class对象对应类的所有的public Field。
+- Field	getDeclaredField(String name)：
+- Field[]	getDeclaredFields()：
+
+获取Annotation：
+- <A extends Annotation> A	getAnnotation(Class<A> annotationClass)：试图获取该Class对象上指定类型的Annotation。（不存在返回null）
+- Annotation[]	getAnnotations()：返回该Class对象对应类上所有Annotation。
+- <A extends Annotation> A[]	getAnnotationsByType(Class<A> annotationClass)：返回直接修饰该Class对应类上所有Annotation。
+
+获取Class对象对应类包含的内部类：
+- Class<?>[]	getDeclaredClasses()：
+
+获取Class对象对应类所在的外部类：
+- Class<?>	getDeclaringClass()：
+
+获取Class对象对应类所继承的父类、所实现的接口等：
+- Class<?>[]	getInterfaces()：
+
+获取Class对象对应类所继承的父类：
+- Class<? super T>	getSuperclass()：
+
+获取Class对象对应类的修饰符、所在包、类名等（基本信息）：
+- int	getModifiers()：返回此类或接口的所有修饰符。修饰符由public/protected/private/final/static/abstract等对应常量组成，返回的整数应使用Modifer工具类的方法来解码才能获取真实修饰符。
+- Package	getPackage()：获取此类的包
+- String	getName()：返回此Class对象所表示的类名。
+- String	getSimpleName()：返回此Class对象所表示的简单类名。
+
+判断该类是否为接口、枚举、注解类型等：
+- boolean	isAnnotation()：是否为一个注解类（由@interface定义）
+- boolean	isAnnotationPresent(Class<? extends Annotation> annotationClass)：此Class对象是否被Annotation注解修饰。
+- boolean	isAnonymousClass()：是否为一个匿名类
+- boolean	isArray()：是否为数组类
+- boolean	isEnum()：是否为一个枚举类
+- boolean	isInterface()：是否为一个接口
+- boolean	isInstance(Object obj)：判断obj是否是此Class对象的实例（可替代instanceof操作符）
+
+
+
+
