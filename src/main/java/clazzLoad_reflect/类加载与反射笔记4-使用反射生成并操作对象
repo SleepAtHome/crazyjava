@@ -1,4 +1,5 @@
 类加载与反射笔记4-使用反射生成并操作对象
+【注❶：XXX对应8种基本类型，如该属性为引用类型，则取消XXX】
 
 18.4.1 创建对象
 使用反射生成对象有以下两种方式
@@ -20,12 +21,17 @@
 18.4.3 访问属性值
 通过Class对象的getFields()或getField()方法可以获取该类所包括的全部Field或指定Field。
 Field提供了两组方法来读取或设置Field值：
-- XXX	getXXX(Object obj)：获取obj对象该Field的属性值。（XXX对应8种基本类型，如该属性为引用类型，则取消XXX）
-- void	setXXX(Object obj, XXX val)：将obj对象该Field设置成val值。（括号内同上）
+- XXX	getXXX(Object obj)：获取obj对象该Field的属性值。（❶）
+- void	setXXX(Object obj, XXX val)：将obj对象该Field设置成val值。（❶）
 
 使用这两个方法可以随意访问对象的所有属性（包括private）。
 
 
-
+18.4.4 操作数组
+java.lang.reflect包下还有一个Array类，可以代表所有的数组。程序可以通过此类来动态创建、操作数组等。
+此Array类提供以下方法：
+- static Object	newInstance(Class<?> componentType, int length)：创建一个具有指定元素类型、指定维度的新数组。
+- static XXX	getXXX(Object array, int index)：返回array数组中第index个元素。（❶）
+- static void	setXXX(Object array, int index, XXX val)：将array数组中第index个元素的值设为val（❶set(Object array, int index, Object value)）
 
 
