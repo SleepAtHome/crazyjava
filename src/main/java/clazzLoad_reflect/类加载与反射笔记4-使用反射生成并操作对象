@@ -17,6 +17,15 @@
 - void	setAccessible(boolean flag)：设置为true的话就能访问了（此方法属于Method类的父类AccessibleObject）
 
 
+18.4.3 访问属性值
+通过Class对象的getFields()或getField()方法可以获取该类所包括的全部Field或指定Field。
+Field提供了两组方法来读取或设置Field值：
+- XXX	getXXX(Object obj)：获取obj对象该Field的属性值。（XXX对应8种基本类型，如该属性为引用类型，则取消XXX）
+- void	setXXX(Object obj, XXX val)：将obj对象该Field设置成val值。（括号内同上）
+
+使用这两个方法可以随意访问对象的所有属性（包括private）。
+
+
 
 
 
