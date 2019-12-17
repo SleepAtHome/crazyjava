@@ -6,3 +6,17 @@
 - 先使用Class对象获取指定的Constructor对象，再调用Constructor对象的newInstance()方法来创建该Class对象对应类的实例（可以选择指定的构造器）。
 
 事实上只有当程序需要动态创建某个类的对象时才会考虑反射，通常在开发通用性比较广的框架、基础平台时可能会大量使用反射。
+
+
+18.4.2 调用方法
+每个Method对象对应一个方法，可以通过invoke()方法调用。
+- Object	invoke(Object obj, Object... args)：执行Method对象的方法。obj-方法的主调  args-实参
+
+当通过Method的invoke()方法来调用对应的方法时，Java会要求程序要有对应的权限。
+如需调用private方法，可以先调用Method对象的以下方法：
+- void	setAccessible(boolean flag)：设置为true的话就能访问了（此方法属于Method类的父类AccessibleObject）
+
+
+
+
+

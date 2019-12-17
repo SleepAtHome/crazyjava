@@ -12,6 +12,11 @@ import java.util.Properties;
  * 然后创建这些对象，并将这些对象放入一个HashMap中
  *
  * Spring使用了这样的方式
+ *
+ * 配置文件格式为：
+ * 对象名=全限定类名
+ * e.g. a=java.util.Date
+ *
  * date: 2019/12/16 23:26
  *
  * @author jingyuankui
