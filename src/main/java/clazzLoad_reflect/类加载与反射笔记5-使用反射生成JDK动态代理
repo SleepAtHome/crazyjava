@@ -1,0 +1,17 @@
+java.lang.reflect包下提供了一个Proxy类和一个InvocationHandler接口，通过这个类和接口可以生成jdk动态代理类或动态代理对象。
+
+18.5.1 创建动态代理
+Proxy提供了用于创建动态代理类和代理对象的静态方法，它也是所有动态代理类的父类。
+如果在程序中为一个或多个接口动态地生成实现类，就可以使用Proxy来创建动态代理类。
+如果需要为一个或多个接口动态地创建实例，也可以使用Proxy来创建动态代理实例。
+
+Proxy提供方法如下：
+- static Class<?>	getProxyClass(ClassLoader loader, Class<?>... interfaces)：创建一个动态代理类所对应的Class对象。
+    该代理类将实现interface所制指定的多个接口。loader-指定生成动态代理类的类加载器。
+- static Object	newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h)：直接创建一个动态代理对象。
+    该代理对象将实现interface所制指定的多个接口。执行代理对象的每个方法时都会被替换执行InvocationHandler对象的invoke()方法。
+
+系统生成的每个代理对象都有一个与之关联的InvocationHandler对象。
+
+
+
