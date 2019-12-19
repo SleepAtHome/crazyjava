@@ -6,12 +6,13 @@ import java.lang.reflect.Method;
 /**
  * @description: 执行动态代理对象的所有方法时，都会被替换成以下的invoke方法
  *
+ * 自定义InvocationHandler需要重写invoke()方法，——调用代理对象的所有方法时都会被替换成调用该invoke()方法。
+ *
  * @author: Jingyuankui
  * @time: 2019/12/18 13:04
  */
 public class MyInvocationHandler implements InvocationHandler {
     /**
-     *
      * @param proxy 动态代理对象
      * @param method 正在执行的方法
      * @param args 调用目标方法时传入的实参

@@ -9,6 +9,8 @@ import java.lang.reflect.Proxy;
  * @description: 生成一个动态代理类，
  * 通过这个动态代理类来创建代理对象的方式生成一个动态代理对象。
  *
+ * 为什么这里的f是null？toString方法是怎么调用的？
+ *
  * @author: Jingyuankui
  * @time: 2019/12/18 11:38
  */
