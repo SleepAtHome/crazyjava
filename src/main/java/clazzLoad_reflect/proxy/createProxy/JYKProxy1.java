@@ -1,4 +1,4 @@
-package clazzLoad_reflect.proxy;
+package clazzLoad_reflect.proxy.createProxy;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
