@@ -1,4 +1,4 @@
-package exception;
+package exception.handleException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class FinallyTest {
         FileInputStream fi = null;
 
         try {
-            fi = new FileInputStream("a.txt");
+            fi = new FileInputStream("FinallyTest.txt");
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
             // 即使return，finally块中的代码也会执行

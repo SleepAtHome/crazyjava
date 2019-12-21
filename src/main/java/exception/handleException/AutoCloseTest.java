@@ -1,4 +1,4 @@
-package exception;
+package exception.handleException;
 
 import java.io.*;
 
@@ -16,8 +16,8 @@ public class AutoCloseTest {
                 // 声明、初始化两个可关闭资源（try语句会自动关闭这两个资源）
                 // 这两个类都实现了Closeable接口，所以可以自动关闭
                 // cc.txt这个资源是要有的
-                BufferedReader br = new BufferedReader(new FileReader("cc.txt"));
-                PrintStream ps = new PrintStream(new FileOutputStream("a.txt"))
+                BufferedReader br = new BufferedReader(new FileReader("AutoCloseTestReader.txt"));
+                PrintStream ps = new PrintStream(new FileOutputStream("AutoCloseTestPrint.txt"))
         ) {
             System.out.println(br.readLine());
             ps.println("景元奎正在学习");

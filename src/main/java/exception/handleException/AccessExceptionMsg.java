@@ -1,4 +1,4 @@
-package exception;
+package exception.handleException;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -6,7 +6,7 @@ import java.io.IOException;
 
 /**
  * ClassName: AccessExceptionMsg
- * Description: 异常对象的使用
+ * Description: 异常对象的使用，访问异常信息
  * date:
  * @author jingyuankui
  * @since JDK 1.8
@@ -14,7 +14,7 @@ import java.io.IOException;
 public class AccessExceptionMsg {
     public static void main(String[] args) {
         try {
-            FileInputStream in = new FileInputStream("a.txt");
+            FileInputStream in = new FileInputStream("Non-existent.txt");
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage()); // getMessage()：返回该异常的详细描述字符串
             System.out.println("======");

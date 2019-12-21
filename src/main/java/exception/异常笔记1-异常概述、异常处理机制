@@ -41,14 +41,24 @@ Throwable
 捕获多种类型的异常时，异常的变量有隐式的final修饰。
 
 10.2.4 访问异常信息
+所有的异常对象都包括以下几个常用的方法：
+- getMessage()：返回该异常的详细描述字符串。
+- printStackTrace(); 将异常的跟踪栈信息输出到标准错误输出。
+- printStackTrace(PrintStream s); 将异常的跟踪栈信息输出到指定输出流。
+- getStackTrace(); 返回该异常的跟踪栈信息
 
+10.2.5 使用finally回收资源
 使用finally回收try块打开的资源（数据库连接、网络连接、磁盘文件等）。
 finally块总会执行，不管在try、catch中是否执行或是return。
 在处理异常时，try是必须的，catch和finally至少出现其中之一，finally必须放在最后。
-
 通常，不要在finally块中使用return或者throw导致方法终止的语句，因为会导致原本的try、catch块中的return、throw语句失效。
 
+10.2.6 异常处理的嵌套
+异常处理可以嵌套，但别太多（不优雅）
+
+10.2.7 自动关闭资源的try语句(java1.7+)
 使用自动关闭资源try语句时，包含了隐式的Finally块，只有实现了AutoCloseable或Closeable接口才能使用使用自动关闭资源try语句。
+
 
 Java异常分两大类：Checked异常和RunTime异常，所有RunTimeException类及其子类的实例被称为RunTime异常，其他的则是Checked异常。
 Checked异常必须要显式try、catch或者throw
