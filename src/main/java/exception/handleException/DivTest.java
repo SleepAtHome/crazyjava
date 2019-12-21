@@ -1,4 +1,4 @@
-package exception;
+package exception.handleException;
 
 import java.util.Scanner;
 
@@ -21,12 +21,16 @@ public class DivTest {
             String b = sc2.nextLine();
             int c = Integer.parseInt(a)/Integer.parseInt(b);
             System.out.println("a/b = "+c);
+
+            // 如果运行程序时输入的参数不够，会导致数组越界异常
         }catch (IndexOutOfBoundsException ie) {
             System.out.println("数组越界");
         }
+        // 如果运行程序时输入的不是数字，会导致数字格式异常
         catch (NumberFormatException ne) {
             System.out.println("数字格式异常：程序只能接受整数参数");
         }
+        // 如果运行程序时输入的除数是0，会导致算数异常
         catch (ArithmeticException ae) {
             System.out.println("算数异常");
         }

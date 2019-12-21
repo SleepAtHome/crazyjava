@@ -1,10 +1,10 @@
-package exception;
+package exception.handleException;
 
 import java.util.Scanner;
 
 /**
  * ClassName: MultiExceptionTest
- * Description: 接收多种异常(java1.7+)
+ * Description: 一个catch块接收多种异常(java1.7+)
  * date:
  * @author jingyuankui
  * @since JDK 1.8

@@ -1,38 +1,23 @@
 异常机制可以使程序的异常处理代码和正常业务代码分离，保证程序代码更加优雅，并提高程序的健壮性。
 
-异常机制：try、catch、finally、throw、throws
 
+10.2 异常处理机制
+当程序运行出现意外情形时，系统会自动生成一个Exception对象来通知程序，从而实现将"业务代码"与"处理错误代码"分离，提高可读性。
+异常机制：try、catch、finally、throw、throws
 Java将异常分为两种：Checked（编译阶段处理）、Runtime
 
+10.2.1 使用try...catch捕获异常
+如果try块里的代码出现异常，系统自动生成一个异常对象，提交给Java运行时环境（抛出/throw异常）。
+在try块中出现异常时，系统自动生成一个异常对象提交给Java运行时环境，然后会寻找能处理这个异常的catch块。如果找不到，则运行时环境终止，Java程序退出。
+每个catch块都是专门用于处理该异常类及其子类的异常实例。（可以有多个catch块）
 finally块中的代码总会被执行。
+
 
 为什么要用异常：
 1. 无法穷举所有的异常情况（总有可能漏掉的情况）
 2. 错误处理代码和业务实现代码混杂，不好维护
 
-当程序出现意外情形时，系统会自动生成一个Exception对象来通知程序。
-在try块中出现异常时，系统自动生成一个异常对象提交给Java运行时环境，然后会寻找能处理这个异常的catch块。如果找不到，则运行时环境终止，Java程序退出。
-
-每个catch块都是专门用于处理该异常类及其子类的异常实例。（可以有多个catch块）
-
-先处理小异常，再处理大异常。
-
-捕获多种类型的异常时，异常的变量有隐式的final修饰。
-
-使用finally回收try块打开的资源（数据库连接、网络连接、磁盘文件等）。
-finally块总会执行，不管在try、catch中是否执行或是return。
-在处理异常时，try是必须的，catch和finally至少出现其中之一，finally必须放在最后。
-
-通常，不要在finally块中使用return或者throw导致方法终止的语句，因为会导致原本的try、catch块中的return、throw语句失效。
-
-使用自动关闭资源try语句时，包含了隐式的Finally块，只有实现了AutoCloseable或Closeable接口才能使用使用自动关闭资源try语句。
-
-Java异常分两大类：Checked异常和RunTime异常，所有RunTimeException类及其子类的实例被称为RunTime异常，其他的则是Checked异常。
-Checked异常必须要显式try、catch或者throw
-RunTime异常无需显式throw。
-
-一般优先考虑使用RunTime异常，可以使程序更加简洁。
-
+10.2.2 异常类的继承体系
 Java异常类继承关系：
 Throwable
      |------Error（错误-虚拟机相关）
@@ -48,6 +33,30 @@ Throwable
                        |------IndexOutOfBoundsException
                        |------NullPointerException
                        |------ClassCastException
+
+先处理小异常，再处理大异常。
+
+10.2.3 多异常捕获（jdk1.7+）
+一个catch块接收多种异常。
+捕获多种类型的异常时，异常的变量有隐式的final修饰。
+
+10.2.4 访问异常信息
+
+使用finally回收try块打开的资源（数据库连接、网络连接、磁盘文件等）。
+finally块总会执行，不管在try、catch中是否执行或是return。
+在处理异常时，try是必须的，catch和finally至少出现其中之一，finally必须放在最后。
+
+通常，不要在finally块中使用return或者throw导致方法终止的语句，因为会导致原本的try、catch块中的return、throw语句失效。
+
+使用自动关闭资源try语句时，包含了隐式的Finally块，只有实现了AutoCloseable或Closeable接口才能使用使用自动关闭资源try语句。
+
+Java异常分两大类：Checked异常和RunTime异常，所有RunTimeException类及其子类的实例被称为RunTime异常，其他的则是Checked异常。
+Checked异常必须要显式try、catch或者throw
+RunTime异常无需显式throw。
+
+一般优先考虑使用RunTime异常，可以使程序更加简洁。
+
+
 
 
 
