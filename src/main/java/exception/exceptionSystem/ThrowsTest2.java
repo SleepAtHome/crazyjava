@@ -1,4 +1,4 @@
-package exception;
+package exception.exceptionSystem;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,6 +18,6 @@ public class ThrowsTest2 {
     }
 
     private static void test() throws FileNotFoundException {
-        FileInputStream fis = new FileInputStream("haha.txt");
+        FileInputStream fis = new FileInputStream("FileNotFoundException.txt");
     }
 }

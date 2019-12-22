@@ -1,0 +1,26 @@
+异常笔记2-Checked异常和Runtime异常体系
+
+Java异常分两大类：Checked异常和RunTime异常，所有RunTimeException类及其子类的实例被称为RunTime异常，其他的则是Checked异常。
+Checked异常处理方式：
+- 使用try...catch块处理
+- 抛出
+
+Checked异常必须要显式try、catch或者throw
+RunTime异常无需显式throw。
+
+10.3.1 使用throws声明抛出异常
+Checked异常的不便之处：
+- 增加了编程的复杂度（显示捕获或抛出）
+- 方法签名与异常耦合
+
+一般优先考虑使用RunTime异常，可以使程序更加简洁。
+
+
+
+
+
+
+
+
+
+
