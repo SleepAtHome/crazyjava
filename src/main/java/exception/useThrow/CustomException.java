@@ -9,11 +9,11 @@ package exception.useThrow;
  * @author jingyuankui
  * @since JDK 1.8
  */
-public class customException extends Exception {
-    public customException() {
+public class CustomException extends Exception {
+    public CustomException() {
     }
 
-    public customException(String message) {
+    public CustomException(String message) {
         super(message);
     }
 }
