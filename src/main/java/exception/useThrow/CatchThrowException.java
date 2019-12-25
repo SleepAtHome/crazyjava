@@ -10,16 +10,16 @@ package exception.useThrow;
  */
 public class CatchThrowException {
     private double initPrice = 30.0;
-    public void bid(String bidPrice) throws customException {
+    public void bid(String bidPrice) throws CustomException {
         double d = 0.0;
         try {
             d = Double.parseDouble(bidPrice);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new customException("竞拍价必须是数值，不能包含其他字符！");
+            throw new CustomException("竞拍价必须是数值，不能包含其他字符！");
         }
         if (initPrice > d) {
-            throw new customException("竞拍价比起拍价低，不允许竞拍");
+            throw new CustomException("竞拍价比起拍价低，不允许竞拍");
         }
         initPrice = d;
     }
@@ -28,7 +28,7 @@ public class CatchThrowException {
         CatchThrowException c = new CatchThrowException();
         try {
             c.bid("df");
-        } catch (customException e) {
+        } catch (CustomException e) {
             System.out.println("进行异常处理。。。");
             e.printStackTrace();
         }

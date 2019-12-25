@@ -1,0 +1,22 @@
+异常笔记4-Java的异常跟踪栈
+异常对象的printStackTrace()方法用于打印异常的跟踪栈信息，根据这个可以找到异常的源头，并清楚异常一路触发的过程。
+
+运行结果如下（单线程）：
+Exception in thread "main" exception.exceptionStack.SelfException: 自定义异常信息
+	at exception.exceptionStack.PrintStackTraceTest.thirdMethod(PrintStackTraceTest.java:23)            ——异常源头
+	at exception.exceptionStack.PrintStackTraceTest.secondMethod(PrintStackTraceTest.java:20)           ——第二个
+	at exception.exceptionStack.PrintStackTraceTest.firstMethod(PrintStackTraceTest.java:17)            ——第三个
+	at exception.exceptionStack.PrintStackTraceTest.main(PrintStackTraceTest.java:13)                   ——main方法
+
+Process finished with exit code 1
+
+
+运行结果如下（多线程）：
+Exception in thread "Thread-0" java.lang.ArithmeticException: / by zero
+	at exception.exceptionStack.ThreadExceptionTest.secondMethod(ThreadExceptionTest.java:25)
+	at exception.exceptionStack.ThreadExceptionTest.firstMethod(ThreadExceptionTest.java:19)
+	at exception.exceptionStack.ThreadExceptionTest.run(ThreadExceptionTest.java:15)
+	at java.lang.Thread.run(Thread.java:748)
+
+Process finished with exit code 0
+
