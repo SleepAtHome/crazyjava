@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="crazy-java" />
         <module name="crazyjava" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="crazyjava" target="6" />
+    </bytecodeTargetLevel>
   </component>
 </project>
