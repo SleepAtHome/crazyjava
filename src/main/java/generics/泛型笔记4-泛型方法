@@ -23,6 +23,11 @@
 9.4.3 Java7的"菱形"语法 与 泛型构造器
 Java允许在构造签名中声明类型形参（泛型构造器）
 
+9.4.4 设定通配符下限
+<? super Type> ?必须是Type本身或者是Type的父类
+
+TreeSet<E> 有一个构造器用到了这种设定通配符下限的语法:TreeSet(Comparator<? super E> c);
+
 
 
 
