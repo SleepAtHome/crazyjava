@@ -1,0 +1,21 @@
+Java集合类可以存储数量不等的多个对象，并可以实现常用的数据结构（栈、队列等）
+Java集合可大致分为Set（无序、不可重复）、List（有序、重复）、Map（映射关系） 3种体系。
+jdk1.5+ 加上了Queue集合
+
+8.1 Java集合概述
+为了存储数量不等的多个对象，使用集合类。（数组定长）
+集合类基本上在java.util包下。
+支持多线程集合类基本上在java.util.concurrent包下。
+
+集合里只能保存对象（不能保存基本数据类型）。
+
+Java的集合类由两个接口派生而出：Collection和Map（他们是Java集合框架的根接口）
+Collection是Set、Queue、List的父类
+Map是EnumMap、IdentityHashMap、HashMap、Hashtable、SortedMap、WeakHashMap的父类
+
+    HashMap：线程不安全，key、value允许为null
+    Hashtable：线程安全，key、value不允许为null
+
+常用：HashSet、TreeSet、ArrayList、ArrayQueue、LinkedList、HashMap、TreeMap
+
+Iterator：主要用来遍历Collection集合中的元素
