@@ -17,5 +17,3 @@ Map是EnumMap、IdentityHashMap、HashMap、Hashtable、SortedMap、WeakHashMap�
     Hashtable：线程安全，key、value不允许为null
 
 常用：HashSet、TreeSet、ArrayList、ArrayQueue、LinkedList、HashMap、TreeMap
-
-Iterator：主要用来遍历Collection集合中的元素

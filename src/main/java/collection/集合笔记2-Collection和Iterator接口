@@ -1,0 +1,9 @@
+Iterator：主要用来遍历Collection集合中的元素
+
+Collection接口中定义的方法：
+- boolean	add(E e)
+- boolean	addAll(Collection<? extends E> c)：把集合c里的所有元素添加到指定集合里。
+- void	clear()：Removes all of the elements from this collection (optional operation).
+- boolean	contains(Object o)：Returns true if this collection contains the specified element.
+- boolean	containsAll(Collection<?> c)：Returns true if this collection contains all of the elements in the specified collection.
+-
