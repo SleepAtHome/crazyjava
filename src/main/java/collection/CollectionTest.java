@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
+/**
+ * 对Collection的操作
+ */
 public class CollectionTest {
     public static void main(String[] args) {
         Collection c = new ArrayList();
