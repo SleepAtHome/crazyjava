@@ -1,3 +1,28 @@
 8.3 Set集合
 Set集合不允许包含相同的元素，如果试图将两个相同的元素加入同一个Set，那么会返回false，并且新的元素不会被加入。
 Set集合判断两个对象相同与否用的是equals方法。
+
+8.3.1 HashSet类
+HashSet是Set接口的典型实现。
+HashSet按Hash算法来存储集合中的元素，具有很好的存取和查找性能。
+
+特点：
+- 元素无序（顺序有可能发生变化）
+- HashSet不同步，如果有多个线程访问一个HashSet集合时，必须要用代码保证同步。
+- 集合元素可以为null
+
+往HashSet中存储元素时，会根据调用对象的hashCode值来决定存储位置。
+
+注意：如果需要重写equals方法，则对应也要注意hashCode方法，尽量保证这两个方法同步。
+不同步情况：
+- equals返回true，hashCode返回false ---- HashSet会将这两个元素保存在Hash表的不同位置，都可以添加成功（与Set规则有出入）
+- equals返回false，hashCode返回true ---- HashSet会将这两个元素保存在Hash表的同一个位置，在这个位置上用链式结构保存多个对象（导致性能下降）
+
+重写hashCode规则：
+- 同一个对象调用hashCode()方法应该返回相同的值。
+- 两个对象通过equals()方法比较返回true时，这两个对象的hashCode()方法应该返回相同的值。
+- 对象中用作equals()方法比较标准的Field，都应该用来计算hashCode值。
+e.g. 计算HashCode：return f1.hashCode()*17 + (int)f2*13
+
+
+
