@@ -29,5 +29,16 @@ e.g. 计算HashCode：return f1.hashCode()*17 + (int)f2*13
 LinkedHashSet集合也是根据元素的HashCode值来决定元素的存储位置，同时用链表维护元素的次序。（看起来是以插入顺序保存的）
 性能略低于HashSet，但迭代访问时有不错的性能。
 
+8.3.3 TreeSet类
+TreeSet是SortedSet接口的实现类。（可以确保集合元素处于有序状态）
+与HashSet比，TreeSet提供了以下几个额外的方法：
+- Comparator<? super E>	comparator()：如果TreeSet使用了定制排序，则该方法返回定制排序所使用的Comparator；如果使用的自然排序，则返回null；
+- E	first()：Returns the first (lowest) element currently in this set.
+- E	last()：Returns the last (highest) element currently in this set.
+- E	lower(E e)：返回指定元素之前的元素。（小于指定元素的最大元素）
+- E	higher(E e)：返回指定元素之后的元素。（大于指定元素的最小元素）
+- SortedSet<E>	subSet(E fromElement, E toElement)：Returns a view of the portion of this set whose elements range from fromElement, inclusive, to toElement, exclusive.
+- SortedSet<E>	headSet(E toElement)：返回一个子集，由小于toElement的元素组成。
+- SortedSet<E>	tailSet(E fromElement)：返回一个子集，由大于等于fromElement的元素组成。
 
 
