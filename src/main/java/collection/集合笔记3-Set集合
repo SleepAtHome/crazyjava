@@ -41,4 +41,11 @@ TreeSet是SortedSet接口的实现类。（可以确保集合元素处于有序�
 - SortedSet<E>	headSet(E toElement)：返回一个子集，由小于toElement的元素组成。
 - SortedSet<E>	tailSet(E fromElement)：返回一个子集，由大于等于fromElement的元素组成。
 
+TreeSet采用红黑树的数据结构在存储集合元素。
+TreeSet支持两种排序方法：自然排序、定制排序。（默认使用自然排序）
 
+- 自然排序：使用conmareTo(Object obj)，将元素按照升序排列。
+    如果将一个对象加入到TreeSet中时，这个对象必须实现Comparable接口，否则会出现异常。
+    如果想TreeSet中添加的是自定义类对象（实现了Comparable接口），添加时不会有异常，取出时会有。
+    如果两个对象通过compareTo()方法比较相等，则新对象无法添加到TreeSet中。
+- 定制排序：需要在创建TreeSet集合对象时，提供一个Comparator对象与该TreeSet集合关联，由这个Comparator对象负责集合元素的排序逻辑。
